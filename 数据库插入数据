@@ -13,7 +13,7 @@ cursor.execute("drop table if exists bandcard")
 sql = 'insert into bandcard(0,100)'
 try:
     cursor.execute(sql)
-    cursor.execute(sql)
+    db.commit()
 except:
     db.rollback()
     #如果提交失败，回滚到上一次数据
