@@ -1,0 +1,18 @@
+import pymysql
+#连接数据库
+#参数1 MYSQL服务所在的主机ip
+#参数2 用户名
+#参数3 密码
+#参数4 要连接的数据库名
+db = pymysql.connect("localhost","root","3","4")
+#创建一个cursor对象
+cursor = db.cursor()
+#检查表是否存在，如果存在则删除
+cursor.execute("drop table if exists bandcard")
+#建表
+sql = 'create table bancard(id int auto_increment primary key,money int not null)'
+
+cursor.execute(sql)
+#断开
+cursor.close()
+db.close()
