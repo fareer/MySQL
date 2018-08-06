@@ -1,0 +1,26 @@
+import pymysql
+#连接数据库
+#参数1 MYSQL服务所在的主机ip
+#参数2 用户名
+#参数3 密码
+#参数4 要连接的数据库名
+'''
+fetchone()
+功能：获取下一个查询结果集，结果集是一个对象
+
+fetchall()
+功能:接受全部的返回的行
+'''
+db = pymysql.connect("localhost","root","3","4")
+#创建一个cursor对象
+cursor = db.cursor()
+sql = "select* from bandcard where money>400"
+try:
+    cursor.execute(sql)
+    reslist = cursor.fetchall()
+    for row in reslist:
+        print("%d--%d"%(row[0],row[1]))
+except:
+    db.rollback()
+cursor.close()
+db.closer()
