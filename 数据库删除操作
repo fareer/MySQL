@@ -1,0 +1,16 @@
+import pymysql
+#连接数据库
+#参数1 MYSQL服务所在的主机ip
+#参数2 用户名
+#参数3 密码
+#参数4 要连接的数据库名
+db = pymysql.connect("localhost","root","3","4")
+#创建一个cursor对象
+cursor = db.cursor()
+sql = 'delete from bandcard where money = 200'
+
+try:
+    cursor.execute(sql)
+    db.commit()
+except:
+    db.rollback()
